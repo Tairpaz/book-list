@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 
 app = FastAPI()
 
-# מסד נתונים בזיכרון
+# רשימת ספרים
 books = []
 counter = 1
 
@@ -20,12 +20,11 @@ def get_book(book_id: int):
 @app.post("/books")
 def add_book(book: dict):
     global counter
-    # סעיף 9: הוספת שדה year
     new_book = {
         "id": counter,
         "title": book.get("title"),
-        "author": book.get("author"),
-        "year": book.get("year")
+        "author": book.get("author")
+        # שימי לב: אין כאן year - זו הגרסה הישנה
     }
     books.append(new_book)
     counter += 1
